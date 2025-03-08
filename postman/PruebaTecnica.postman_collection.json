@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "b5e7b8d2-3b4c-4d5e-9f10-8a6c7d8e9f0a",
+		"name": "Prueba Técnica - Todo & Chat",
+		"description": "Colección para probar los endpoints de la API REST y WebSocket",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Todo API",
+			"item": [
+				{
+					"name": "Crear Todo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Completar prueba técnica\",\n    \"description\": \"Finalizar implementación de la arquitectura hexagonal\",\n    \"completed\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todos",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos"]
+						},
+						"description": "Crea una nueva tarea"
+					}
+				},
+				{
+					"name": "Obtener Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/todos",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos"]
+						},
+						"description": "Obtiene todas las tareas"
+					}
+				},
+				{
+					"name": "Obtener Todo por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/todos/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos", "1"]
+						},
+						"description": "Obtiene una tarea específica por su ID"
+					}
+				},
+				{
+					"name": "Actualizar Todo",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Completar prueba técnica\",\n    \"description\": \"Finalizar implementación y hacer pruebas\",\n    \"completed\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/todos/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos", "1"]
+						},
+						"description": "Actualiza una tarea existente"
+					}
+				},
+				{
+					"name": "Marcar Todo como Completado",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/todos/1/complete",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos", "1", "complete"]
+						},
+						"description": "Marca una tarea como completada"
+					}
+				},
+				{
+					"name": "Eliminar Todo",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/todos/1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos", "1"]
+						},
+						"description": "Elimina una tarea"
+					}
+				},
+				{
+					"name": "Filtrar Todos por Estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/todos/filter?completed=true",
+							"host": ["{{base_url}}"],
+							"path": ["api", "todos", "filter"],
+							"query": [
+								{
+									"key": "completed",
+									"value": "true"
+								}
+							]
+						},
+						"description": "Filtra las tareas por su estado de completitud"
+					}
+				}
+			]
+		},
+		{
+			"name": "Chat API",
+			"item": [
+				{
+					"name": "Obtener Todos los Mensajes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/chat/messages",
+							"host": ["{{base_url}}"],
+							"path": ["api", "chat", "messages"]
+						},
+						"description": "Obtiene todos los mensajes del chat"
+					}
+				},
+				{
+					"name": "Obtener Mensajes por Remitente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/chat/messages/sender/Usuario1",
+							"host": ["{{base_url}}"],
+							"path": ["api", "chat", "messages", "sender", "Usuario1"]
+						},
+						"description": "Obtiene los mensajes de un remitente específico"
+					}
+				},
+				{
+					"name": "Enviar Mensaje (REST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"Hola, este es un mensaje de prueba\",\n    \"sender\": \"Usuario1\",\n    \"type\": \"CHAT\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/chat/messages",
+							"host": ["{{base_url}}"],
+							"path": ["api", "chat", "messages"]
+						},
+						"description": "Envía un mensaje usando REST (alternativa a WebSocket)"
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+} 
